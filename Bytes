@@ -1,0 +1,26 @@
+public class Xxa {
+
+    public static String formatFileSize(long bytes) {
+        if (bytes <= 0) {
+            throw new IllegalArgumentException("O tamanho do arquivo deve ser maior que 0.");
+        }
+        
+        String[] sizes = {"B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"};
+        int scale = 0;
+        double size = bytes;
+        
+        while (size >= 1024 && scale < sizes.length-1) {
+            size /= 1024;
+            scale++;
+        }
+        
+        return String.format("%.2f %s", size, sizes[scale]);
+    }
+
+    public static void main(String[] args) {
+        long fileSize = 200; // Exemplo de tamanho do arquivo em bytes
+
+        String formattedSize = formatFileSize(fileSize);
+        System.out.println("Tamanho do arquivo: " + formattedSize);
+    }
+}
